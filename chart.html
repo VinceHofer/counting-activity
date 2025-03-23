@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>200 Chart Activity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            text-align: center;
+            background-image: url('https://www.clipartmax.com/png/middle/76-761904_dinosaur-cartoon-background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 20px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .chart {
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            gap: 5px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            background: blue;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .cell.clicked {
+            background: yellow;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Day <span id="dayNumber"></span> Activities</div>
+        <div class="chart" id="chart"></div>
+    </div>
+    <script>
+        document.getElementById("dayNumber").textContent = localStorage.getItem("currentDay") || "1";
+
+        const chart = document.getElementById("chart");
+        for (let i = 1; i <= 200; i++) {
+            let cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.textContent = i;
+            cell.addEventListener("click", () => {
+                cell.classList.toggle("clicked");
+            });
+            chart.appendChild(cell);
+        }
+    </script>
+</body>
+</html>

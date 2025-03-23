@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Activities Schedule</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            text-align: center;
+            background-image: url('https://www.clipartmax.com/png/middle/76-761904_dinosaur-cartoon-background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .day-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .day {
+            padding: 20px;
+            background: green;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .day:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Select a Day</div>
+        <div class="day-grid" id="dayGrid"></div>
+    </div>
+    <script>
+        const dayGrid = document.getElementById("dayGrid");
+        for (let i = 1; i <= 25; i++) {
+            let dayDiv = document.createElement("div");
+            dayDiv.classList.add("day");
+            dayDiv.textContent = `Day ${i}`;
+            dayDiv.addEventListener("click", () => {
+                localStorage.setItem("currentDay", i);
+                window.location.href = "chart.html"; // Redirect to the 200-chart activity page
+            });
+            dayGrid.appendChild(dayDiv);
+        }
+    </script>
+</body>
+</html>
